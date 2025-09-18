@@ -1,0 +1,50 @@
+{
+  "name": "@syenchuk/remark-abbr",
+  "version": "1.0.0",
+  "description": "Remark plugin to support abbreviations",
+  "keywords": [
+    "remark",
+    "abbr",
+    "unified",
+    "markdown",
+    "abbreviations",
+    "mdx"
+  ],
+  "homepage": "https://github.com/syenchuk/remark-abbr#readme",
+  "bugs": {
+    "url": "https://github.com/syenchuk/remark-abbr/issues"
+  },
+  "repository": "syenchuk/remark-abbr",
+  "license": "ISC",
+  "author": "Alexandre Syenchuk (https://syench.uk)",
+  "type": "module",
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "mdast-util-find-and-replace": "^3.0.2",
+    "unist-util-remove": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "typescript": "^5.9.2",
+    "unified": "^11.0.5",
+    "vitest": "^3.2.4"
+  }
+}
