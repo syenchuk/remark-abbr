@@ -1,3 +1,5 @@
+![NPM Version](https://img.shields.io/npm/v/%40syenchuk%2Fremark-abbr)
+
 # @syenchuk/remark-abbr
 
 A tiny, ESM-only [remark](https://github.com/remarkjs/remark) plugin that brings Markdown abbreviations to the latest [unified](https://unifiedjs.com/) stack.
