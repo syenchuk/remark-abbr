@@ -5,7 +5,7 @@ import rehypeStringify from 'rehype-stringify'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 
-import remarkAbbr from 'src/index.ts'
+import remarkAbbr from './src/index'
 
 const pipeline = unified()
   .use(remarkParse)
@@ -20,16 +20,19 @@ async function md2html(md: string): Promise<string> {
   return file.value as string
 }
 
-test("replaces one abbreviation", async () => {
+test("replaces two abbreviations", async () => {
   expect(await md2html(
-    `Who invented HTML?\n\n` +
-    `*[HTML]: HyperText Markup Language\n`
+    `The HTML specification is maintained by the W3C.
+
+*[HTML]: HyperText Markup Language
+*[W3C]: World Wide Web Consortium
+`
   )).toBe(
-    `<p>Who invented <abbr title="HyperText Markup Language">HTML</abbr>?</p>`
+    `<p>The <abbr title="HyperText Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>`
   )
 })
 
-test("replaces multiple occurrences", async () => {
+test("replaces one abbreviation with multiple occurrences", async () => {
   expect(await md2html(
     `HTML is HTML.\n\n` +
     `*[HTML]: HyperText Markup Language\n`
@@ -39,7 +42,7 @@ test("replaces multiple occurrences", async () => {
   )
 })
 
-test("works with no occurences of the abbreviation", async () => {
+test("doesn't complain with no occurrences of the abbreviation", async () => {
   expect(await md2html(
     `This is a paragraph with no abbreviations.\n\n` +
     `*[HTML]: HyperText Markup Language\n`
@@ -48,7 +51,7 @@ test("works with no occurences of the abbreviation", async () => {
   )
 })
 
-test("works with no abbreviation definitions", async () => {
+test("doesn't complain with no abbreviation definitions", async () => {
   expect(await md2html(
     `This is a paragraph with undefined HTML.\n`
   )).toBe(
@@ -65,7 +68,7 @@ test("does not replace inside code", async () => {
   )
 })
 
-test("keeps last definition when duplicated", async () => {
+test("keeps last definition in case of duplicates", async () => {
   expect(await md2html(
     `Who invented HTML?\n\n` +
     `*[HTML]: HyperText Markup Language\n` +

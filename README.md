@@ -1,8 +1,8 @@
 # @syenchuk/remark-abbr
 
-A tiny, ESM-only [remark](https://github.com/remarkjs/remark) plugin that brings Markdown abbreviations to the latest unified stack.
+A tiny, ESM-only [remark](https://github.com/remarkjs/remark) plugin that brings Markdown abbreviations to the latest [unified](https://unifiedjs.com/) stack.
 
-It reads definition paragraphs such as `*[HTML]: HyperText Markup Language` and rewrites every matching word into a semantic `<abbr>` element.
+It reads definitions such as `*[HTML]: HyperText Markup Language` and rewrites every matching word into a semantic HTML `<abbr>` element.
 
 ## Installation
 
@@ -24,10 +24,10 @@ const file = await unified()
   .use(remarkAbbr)
   .use(remarkRehype)
   .use(rehypeStringify)
-  .process(`Who invented HTML?\n\n*[HTML]: HyperText Markup Language\n`)
+  .process(`Who does maintain HTML?\n\n*[HTML]: HyperText Markup Language\n`)
 
 console.log(String(file))
-// → <p>Who invented <abbr title="HyperText Markup Language">HTML</abbr>?</p>
+// → <p>Who does maintain <abbr title="HyperText Markup Language">HTML</abbr>?</p>
 ```
 
 ## Behaviour
@@ -35,7 +35,32 @@ console.log(String(file))
 - Definitions must live in their own paragraph and follow the `*[ABBR]: Meaning` syntax.
 - Abbreviation matches are exact and case-sensitive; words inside inline/fenced code remain untouched.
 
+Example:
+
+```md
+The HTML specification is maintained by the W3C.
+
+*[HTML]: HyperText Markup Language
+*[W3C]: World Wide Web Consortium
+```
+
+Renders to:
+
+```html
+<p>The <abbr title="HyperText Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
+```
+
+This is almost identical to Markdown Extra's [abbreviations](https://michelf.ca/projects/php-markdown/extra/#abbr), but empty definitions are not supported.
+
+## Compatibility
+
+This plugin is ESM-only and has been tested with `unified` 11.
+
+It was created to replace [remark-abbr](https://www.npmjs.com/package/remark-abbr) which is outdated, and, as of Sept. 19 2025, only works with “*remark versions lesser than 13.0.0*”.
+
 ## Build & Test
+
+If you want to contribute or run tests locally, clone the repo and use:
 
 ```sh
 make install   # installs dependencies
