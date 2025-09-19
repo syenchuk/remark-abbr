@@ -1,3 +1,4 @@
+[![CI](https://github.com/syenchuk/remark-abbr/actions/workflows/ci.yml/badge.svg)](https://github.com/syenchuk/remark-abbr/actions/workflows/ci.yml)
 [![NPM Version](https://img.shields.io/npm/v/%40syenchuk%2Fremark-abbr)](https://www.npmjs.com/package/@syenchuk/remark-abbr)
 
 # @syenchuk/remark-abbr
