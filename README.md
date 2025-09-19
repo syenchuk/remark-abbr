@@ -1,4 +1,4 @@
-![NPM Version](https://img.shields.io/npm/v/%40syenchuk%2Fremark-abbr)
+[![NPM Version](https://img.shields.io/npm/v/%40syenchuk%2Fremark-abbr)](https://www.npmjs.com/package/@syenchuk/remark-abbr)
 
 # @syenchuk/remark-abbr
 
